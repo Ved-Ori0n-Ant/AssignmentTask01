@@ -5,14 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
-  useColorScheme,
   View,
-  Alert,
 } from 'react-native';
 
 const App = () => {
 
   const [userInput, setUserInput] = useState('');
+  const [displayInput, setDisplayInput] = useState('');
 
   return (
     
@@ -21,13 +20,14 @@ const App = () => {
       <TextInput 
         style = {styles.textInput}
         placeholder = "Enter your text"
-        onChangeText = {(userInput) => setUserInput(userInput)}
+        onChangeText = {(val) => setUserInput(val)}
         value = {userInput}
+        keyboardType = {'default'}
       />
             
       <TouchableOpacity 
         style = {styles.btn}
-        onPress = {() => alert(userInput)}
+        onPress = {() => setDisplayInput(userInput)}
       >
         <Text style = {styles.text}>
           Submit
@@ -36,7 +36,7 @@ const App = () => {
 
       {/* <Button title='Submit' onPress={() => alert(userInput)}/> */}
 
-      {/*<Text style={styles.text}> input string is: {userInput}</Text>*/}
+      <Text style={styles.text}> input string is: {displayInput}</Text>
 
 
     </View>
