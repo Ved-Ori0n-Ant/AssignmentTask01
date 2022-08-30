@@ -12,6 +12,7 @@ const App = () => {
 
   const [userInput, setUserInput] = useState('');
   const [displayInput, setDisplayInput] = useState('');
+  const [isInputNull, setIsInputNull] = useState(true);
 
   return (
     
@@ -20,24 +21,29 @@ const App = () => {
       <TextInput 
         style = {styles.textInput}
         placeholder = "Enter your text"
-        onChangeText = {(val) => setUserInput(val)}
+        onChangeText = {(val) => setUserInput(val)} 
+        onSubmitEditing = {() => setIsInputNull(false)}
         value = {userInput}
         keyboardType = {'default'}
       />
             
-      <TouchableOpacity 
+      <Text style={styles.text}>Input string is: {displayInput}</Text>
+
+      
+      {/* <TouchableOpacity 
         style = {styles.btn}
         onPress = {() => setDisplayInput(userInput)}
       >
         <Text style = {styles.text}>
           Submit
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      {/* <Button title='Submit' onPress={() => alert(userInput)}/> */}
-
-      <Text style={styles.text}> input string is: {displayInput}</Text>
-
+      <Button 
+        title='Submit' 
+        onPress={() => setDisplayInput(userInput)}
+        disabled = {isInputNull}
+      />
 
     </View>
       
@@ -51,20 +57,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 32,
     paddingHorizontal: 24,
+    backgroundColor: "#0000ff70"
   },
   textInput: {
     margin: 30,
     padding: 7,
     fontSize: 22,
-    borderWidth: 1,
-    borderColor: "grey",
+    borderWidth: 2,
+    borderColor: "black",
+    backgroundColor: "skyblue",
     width: 300,
   },
   btn: {
-    backgroundColor: "skyblue",
     borderRadius: 23,
+    borderBottomWidth: 4,
+    borderRightWidth: 2,
     width: "40%",
-    height: 35,
+    height: 45,
   },
   text: {
     padding: 7,
